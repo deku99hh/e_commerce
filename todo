@@ -1,14 +1,14 @@
-users
-user_addresses
-tags
-discounts
-items
-item_variants
-item_imgs
-tag_pivot
-carts
-cart_items
-orders
-order_items
-payments
-reviews
+users /
+user_addresses /
+tags /
+discounts /
+items /
+item_variants /
+item_imgs /
+tag_pivot 
+carts /
+cart_items 
+orders /
+order_items 
+payments /
+reviews /

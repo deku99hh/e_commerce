@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->integer('min_spend');
-            $table->integer('usage_limit_per_user');
-            $table->dateTime('expires_at');
+            $table->string('code')->unique();
+            $table->enum('type', ['percentage', 'fixed'])->default('percentage');
+            $table->decimal('value', 8, 2)->unsigned();
+            $table->unsignedInteger('min_spend')->default(0); 
+            $table->unsignedInteger('usage_limit_per_user')->nullable(); 
+            $table->dateTime('expires_at')->nullable(); 
             $table->timestamps();
         });
     }
