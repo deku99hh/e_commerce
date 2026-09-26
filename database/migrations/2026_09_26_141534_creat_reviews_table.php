@@ -11,18 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        // reviews
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('address');
-            $table->boolean('is_active')->default(true);
+            $table->text('comment');
+            $table->unsignedTinyInteger('rating');
             $table->timestamps();
 
             $table->foreignId('user_id')
                 ->constrained(table: 'users', column: 'id')
                 ->cascadeOnDelete();
+
+            $table->foreignId('item_id')
+                ->constrained(table: 'items', column: 'id')
+                ->cascadeOnDelete();
         });
+
     }
 
     /**
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('reviews');
     }
 };

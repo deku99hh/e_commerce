@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
             $table->string('address');
-            $table->boolean('is_active')->default(true);
+            $table->string('city');
+            $table->string('country');
+            $table->string('postal_code')->nullable();
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
 
             $table->foreignId('user_id')
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('user_addresses');
     }
 };

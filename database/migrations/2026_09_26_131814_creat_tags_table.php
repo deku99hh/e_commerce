@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->string('address');
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
-
-            $table->foreignId('user_id')
-                ->constrained(table: 'users', column: 'id')
-                ->cascadeOnDelete();
         });
     }
 
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('tags');
     }
 };

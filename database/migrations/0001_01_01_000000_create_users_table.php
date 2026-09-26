@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->numericMorphs('PhoneNumber');
+            $table->string('phone', 25);
             $table->string('password');
-            $table->enum('role', ['user', 'admin', 'seller']);
+            $table->enum('role', ['user', 'admin', 'seller'])->default('user');
             $table->timestamps();
         });
 
@@ -30,7 +30,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };

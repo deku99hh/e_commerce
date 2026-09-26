@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('address');
-            $table->boolean('is_active')->default(true);
+            $table->string('code');
+            $table->integer('min_spend');
+            $table->integer('usage_limit_per_user');
+            $table->dateTime('expires_at');
             $table->timestamps();
-
-            $table->foreignId('user_id')
-                ->constrained(table: 'users', column: 'id')
-                ->cascadeOnDelete();
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('discounts');
     }
 };
